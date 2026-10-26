@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyproject-dep-doctor"
+version = "0.1.0"
+description = "Production-grade CLI to diagnose pyproject.toml dependencies, detect version constraint conflicts across optional groups, and generate automated fixes."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "slopggobblercobbler81" }
+]
+keywords = [
+    "pyproject",
+    "dependencies",
+    "dependency-resolver",
+    "pypi",
+    "packaging",
+    "pep621",
+    "pep508",
+    "doctor",
+    "cli",
+    "conflict-detector"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "packaging>=21.0",
+    "tomli>=1.1.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+pyproject-dep-doctor = "pyproject_dep_doctor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pyproject_dep_doctor*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+pythonpath = ["."]
